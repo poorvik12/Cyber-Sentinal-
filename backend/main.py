@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from backend.config import FRONTEND_ORIGIN
-from backend.api.routes import router
+from config import FRONTEND_ORIGIN
+from api.routes import router
 
 app=FastAPI(title='AI-Driven Multi-Layer Cybersecurity System',version='1.0.0',description='Defensive synthetic behavioral analytics platform')
 app.add_middleware(CORSMiddleware,allow_origins=[FRONTEND_ORIGIN,'http://localhost:5173','http://127.0.0.1:5173'],allow_credentials=True,allow_methods=['*'],allow_headers=['*'])

@@ -5,8 +5,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from backend.config import MODEL_DIR
-
+from config import MODEL_DIR
 CATEGORICAL = ['protocol', 'http_methods']
 TARGETS = ['label', 'attack_type']
 NUMERICAL = [

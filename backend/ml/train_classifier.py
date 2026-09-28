@@ -5,15 +5,15 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 from sklearn.model_selection import train_test_split
-from backend.config import DATA_DIR, MODEL_DIR
-from backend.ml.preprocessing import FEATURES, build_preprocessor, fit_and_save_preprocessor
+from config import DATA_DIR, MODEL_DIR
+from ml.preprocessing import FEATURES, build_preprocessor, fit_and_save_preprocessor
 
 METRICS_PATH = MODEL_DIR / 'classifier_metrics.json'
 
 def train():
     path = DATA_DIR/'training_dataset.csv'
     if not path.exists():
-        from backend.simulation.generator import generate_all
+        from simulation.generator import generate_all
         generate_all(DATA_DIR)
     df = pd.read_csv(path)
     X=df[FEATURES]; y=df['attack_type']

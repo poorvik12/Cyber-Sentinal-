@@ -4,13 +4,12 @@ from pathlib import Path
 import pandas as pd
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import FileResponse
-from backend.config import DATA_DIR, MODEL_DIR, SIMULATION_MODE
-from backend.database.mongodb import db
-from backend.models.schemas import SecurityEvent, SimulationRequest
-from backend.ml.predict import detector
-from backend.simulation.scenarios import scenario_event
-from backend.simulation.generator import generate_all
-
+from config import DATA_DIR, MODEL_DIR, SIMULATION_MODE
+from database.mongodb import db
+from models.schemas import SecurityEvent, SimulationRequest
+from ml.predict import detector
+from simulation.scenarios import scenario_event
+from simulation.generator import generate_all
 router=APIRouter()
 
 def _event_result(event_dict, result, simulation=None):
@@ -95,8 +94,8 @@ def generate_data():
 
 @router.post('/api/retrain')
 def retrain():
-    from backend.ml.train_classifier import train as train_classifier
-    from backend.ml.train_anomaly_detector import train as train_anomaly
+    from ml.train_classifier import train as train_classifier
+    from ml.train_anomaly_detector import train as train_anomaly
     c=train_classifier(); a=train_anomaly(); detector.reload(); db.insert('model_metrics',{'timestamp':datetime.now(timezone.utc).isoformat(),'classifier':c,'anomaly':a})
     return {'message':'Models retrained successfully','random_forest':c,'isolation_forest':a}
 

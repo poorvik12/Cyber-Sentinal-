@@ -1,5 +1,4 @@
-from backend.config import RISK_THRESHOLDS
-
+from config import RISK_THRESHOLDS
 def clamp(v): return round(max(0,min(100,float(v))),2)
 
 def layer_scores(e):

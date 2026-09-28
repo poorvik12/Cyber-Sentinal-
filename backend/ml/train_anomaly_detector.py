@@ -2,13 +2,13 @@ import json
 import joblib
 import pandas as pd
 from sklearn.ensemble import IsolationForest
-from backend.config import DATA_DIR, MODEL_DIR
-from backend.ml.preprocessing import FEATURES, build_preprocessor
+from config import DATA_DIR, MODEL_DIR
+from ml.preprocessing import FEATURES, build_preprocessor
 
 def train():
     path=DATA_DIR/'normal_behavior.csv'
     if not path.exists():
-        from backend.simulation.generator import generate_all; generate_all(DATA_DIR)
+        from simulation.generator import generate_all; generate_all(DATA_DIR)
     df=pd.read_csv(path)
     pre=build_preprocessor(); Xt=pre.fit_transform(df[FEATURES])
     model=IsolationForest(n_estimators=220, contamination=.035, random_state=42, n_jobs=-1)

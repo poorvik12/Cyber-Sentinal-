@@ -1,5 +1,4 @@
-from backend.simulation.generator import make_records
-
+from simulation.generator import make_records
 def scenario_event(name):
     mapping={
       'normal':('normal','NORMAL'), 'brute_force':('brute_force','BRUTE_FORCE'), 'port_scan':('port_scan','PORT_SCAN'),

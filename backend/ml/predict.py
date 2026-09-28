@@ -2,10 +2,10 @@ from pathlib import Path
 import joblib
 import numpy as np
 import pandas as pd
-from backend.config import MODEL_DIR
-from backend.ml.preprocessing import FEATURES
-from backend.ml.risk_engine import layer_scores, overall_score, risk_level
-from backend.ml.explain import explain
+from config import MODEL_DIR
+from ml.preprocessing import FEATURES
+from ml.risk_engine import layer_scores, overall_score, risk_level
+from ml.explain import explain
 
 class Detector:
     def __init__(self):
@@ -16,8 +16,8 @@ class Detector:
         if iso.exists(): self.iso=joblib.load(iso)
     def ensure(self):
         if not self.rf or not self.iso:
-            from backend.ml.train_classifier import train as train_classifier
-            from backend.ml.train_anomaly_detector import train as train_anomaly
+            from ml.train_classifier import train as train_classifier
+            from ml.train_anomaly_detector import train as train_anomaly
             train_classifier(); train_anomaly(); self.reload()
     def analyze(self,event):
         self.ensure()

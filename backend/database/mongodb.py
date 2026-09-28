@@ -9,8 +9,7 @@ except ImportError:
     MongoClient = None
     class PyMongoError(Exception):
         pass
-from backend.config import MONGODB_URI, MONGODB_DB, FALLBACK_DIR
-
+from config import MONGODB_URI, MONGODB_DB, FALLBACK_DIR
 COLLECTIONS = ['security_events', 'threats', 'alerts', 'simulation_results', 'model_metrics']
 
 class Database:
