@@ -1,0 +1,16 @@
+import axios from 'axios'
+const api=axios.create({baseURL:import.meta.env.VITE_API_URL||'http://localhost:8000',timeout:15000,headers:{'Content-Type':'application/json'}})
+export const getHealth=()=>api.get('/api/health')
+export const getDashboard=()=>api.get('/api/dashboard')
+export const getEvents=(limit=100)=>api.get('/api/events',{params:{limit}})
+export const getThreats=(params={})=>api.get('/api/threats',{params})
+export const getThreat=(id)=>api.get(`/api/threats/${id}`)
+export const analyzeEvent=(data)=>api.post('/api/analyze',data)
+export const simulate=(scenario)=>api.post('/api/simulate',{scenario})
+export const getModelInfo=()=>api.get('/api/model-info')
+export const retrain=()=>api.post('/api/retrain')
+export const generateData=()=>api.post('/api/generate-data')
+export const resetData=()=>api.post('/api/reset')
+export const getSampleData=()=>api.get('/api/data/sample')
+export const getAlerts=(limit=100)=>api.get('/api/alerts',{params:{limit}})
+export default api
