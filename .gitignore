@@ -3,8 +3,6 @@ frontend/dist/
 backend/venv/
 backend/.env
 backend/ml/models/*.pkl
-backend/ml/models/*.json
-backend/data/runtime/*.json
 __pycache__/
 *.pyc
 .env
